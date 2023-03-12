@@ -31,7 +31,10 @@ for i in routes:
 	print(label_name + \".info Anzahl der Verkehrswarnungen von \" + i)
 	print(label_name + \".min 0\")
 
-	"
+print(\"total.label Gesamt\")
+print(\"total.info Anzahl der gesamten Verkehrswarnungen\")
+print(\"total.min 0\")
+"
 }
 
 output_values() {
@@ -50,6 +53,7 @@ if autobahn == \"A8\":
 elif autobahn == \"A7\":
 	routes = [\"Füssen/Reutte Richtung Ulm\", \"Ulm Richtung Füssen/Reutte\", \"Ulm Richtung Würzburg\", \"Würzburg Richtung Ulm\", \"Würzburg Richtung Fulda\", \"Fulda Richtung Würzburg\", \"Fulda Richtung Kassel\", \"Kassel Richtung Fulda\", \"Kassel Richtung Hannover\", \"Hannover Richtung Kassel\", \"Hannover Richtung Hamburg\", \"Hamburg Richtung Hannover\", \"Hamburg Richtung Flensburg\", \"Flensburg Richtung Hamburg\"]
 occ = []
+tot = 0
 for i in routes:
 	occ.append(0)
 
@@ -63,7 +67,10 @@ for i in json_entries[\"warning\"]:
 for i in routes:
 	label_name = i.lower().replace(\" \", \"_\").replace(\"ü\", \"ue\").replace(\"/\", \"_\")
 	count = occ[routes.index(i)]
-	print(label_name + \".value \" + str(count))	
+	tot += count
+	print(label_name + \".value \" + str(count))
+
+print(\"total.value \" + str(tot))
 "
 }
 
